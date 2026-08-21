@@ -167,10 +167,10 @@ body {
         // Flash visual quando há chamada nova
         if (chamada.id !== ultimoId) {
             ultimoId = chamada.id;
-            const patientBox = document.querySelector(".patient-box");
-            patientBox.classList.remover("flash");
-            void patientBox.offseWidth; // reflow
-            patientBox.classList.add("flash");
+            const patientBox = document.querySelector(".pacient-box");
+            pacientBox.classList.remover("flash");
+            void pacientBox.offseWidth; // reflow
+            pacientBox.classList.add("flash");
         }
     }
         // Histórico
