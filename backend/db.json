@@ -1,0 +1,90 @@
+{
+  "usuarios": [
+    {
+      "usuario": "triagem",
+      "senha": "123",
+      "tipo": "triagem"
+    },
+    {
+      "usuario": "medico",
+      "senha": "123",
+      "tipo": "medico"
+    },
+    {
+      "usuario": "atendimento",
+      "senha": "123",
+      "tipo": "atendimento"
+    }
+  ],
+  "pacientes": [
+    {
+      "id": 1778767273416,
+      "nome": "yan",
+      "cpf": "53434449.9.449",
+      "tipo": "Particular",
+      "status": "triagem",
+      "createdAt": "2026-05-14T14:01:13.416Z"
+    }
+  ],
+  "triagens": [
+    {
+      "id": 1778767334260,
+      "nome": "yan",
+      "sintoma": "hemorragia",
+      "temperatura": 37,
+      "alergia": "dipirona",
+      "observacao": "nenhuma ",
+      "risco": "vermelho",
+      "status": "aguardando_medico",
+      "createdAt": "2026-05-14T14:02:14.260Z"
+    },
+    {
+      "id": 1787234637280,
+      "nome": "Yan",
+      "sintoma": "dor_leve",
+      "temperatura": 35,
+      "alergia": "Não tem",
+      "observacao": "Dores nas costas perto dos ombros.",
+      "risco": "verde",
+      "status": "aguardando_medico",
+      "createdAt": "2026-08-20T14:03:57.280Z"
+    },
+    {
+      "id": 1787234746655,
+      "nome": "Yan",
+      "sintoma": "dor_leve",
+      "temperatura": 35,
+      "alergia": "Não tem",
+      "observacao": "Dores nas costas perto dos ombros.",
+      "risco": "verde",
+      "status": "aguardando_medico",
+      "createdAt": "2026-08-20T14:05:46.655Z"
+    }
+  ],
+  "consultas": [
+    {
+      "id": 1778767388545,
+      "paciente": "yan",
+      "diagnostico": "test",
+      "medicacao": "test",
+      "obs": "teste",
+      "createdAt": "2026-05-14T14:03:08.545Z"
+    },
+    {
+      "id": 1786713874566,
+      "paciente": "yan",
+      "diagnostico": "Estar com Hemorragia",
+      "medicacao": "Soro fisiológico",
+      "obs": "nenhuma ",
+      "createdAt": "2026-08-14T13:24:34.566Z"
+    },
+    {
+      "id": 1787234808584,
+      "paciente": "Yan",
+      "diagnostico": "Dor nos ombros.",
+      "medicacao": "Paracetamol",
+      "obs": "Dores nas costas perto dos ombros.",
+      "createdAt": "2026-08-20T14:06:48.584Z"
+    }
+  ]
+}

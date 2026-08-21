@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background: rgb(80, 0, 0);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 30px auto;
+    background: rgb(122, 0, 0);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* LOGO */
+
+.logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 0;
+}
+
+/* TÍTULO */
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3c0000;
+}
+
+/* CAMPOS */
+
+input,
+select,
+textarea,
+button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border-radius: 8px;
+    border: 1px solid #000000;
+    font-size: 16px;
+}
+
+/* TEXTAREA */
+
+textarea {
+    min-height: 120px;
+    resize: none;
+}
+
+/* BOTÃO */
+
+button {
+    background: #7f2626;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #b83030;
+}
+
+/* CARDS */
+
+.card {
+    border: 1px solid #af3f3f;
+    padding: 25px;
+    margin: 15px 0;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    line-height: 1.4;
+}
+
+.card p {
+    margin: 5px 0;
+}
+
+/* RISCO */
+
+.verde,
+.amarelo,
+.vermelho {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.verde {
+    background: #2ecc71;
+    color: white;
+}
+
+.amarelo {
+    background: #f1c40f;
+    color: black;
+}
+
+.vermelho {
+    background: #e74c3c;
+    color: white;
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    .container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+}
