@@ -26,6 +26,7 @@ body {
       flex-direction: column;
       width: 35%;
       gap: 18px;
+      min-width: 0;
     }
 
     .right-panel {
@@ -33,6 +34,7 @@ body {
       flex-direction: column;
       width: 65%;
       gap: 18px;
+      min-width: 0;
     }
 
     .box {
@@ -80,7 +82,7 @@ body {
        }
 
        .history-box .box-title { font-size: 1.8vw; align-self: center;} 
-       #hitory-list {
+       #history-list {
         list-style: none;
         width: 100%;
         color: brown;
@@ -126,6 +128,7 @@ body {
      o local e o nome do paciente chamado -->
 
      <div class="tv-container">
+           <img src="logo.png class="logo>
         <div class="left-panel">
             <div class="box local-box">
                 <div class="box-title" id="local-tipo">GUICHÊ</div>
@@ -154,7 +157,7 @@ body {
     let ultimoId = null;
     // Função criada para buscar a chamada atual e o histórico da TV em tempo real.
     function atualizar() {
-        fetch("/tv/chamadar")
+        fetch("/tv/chamada")
         .then(r => r.json())
         .then(data => {
             const chamada = data.chamada;
