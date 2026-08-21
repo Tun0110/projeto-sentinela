@@ -17,8 +17,8 @@ body {
 
 .container {
     width: 90%;
-    max-width: 900px;
-    margin: 30px auto;
+    max-width: 600px;
+    margin: 50px auto;
     background: rgb(122, 0, 0);
     padding: 30px;
     border-radius: 12px;
@@ -28,8 +28,8 @@ body {
 /* LOGO */
 
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 170px;
+    height: 170px;
     object-fit: contain;
     display: block;
     margin: 0 auto 0;
