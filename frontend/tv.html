@@ -5,121 +5,158 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mídia Indoor - TV</title>
 <style>
+* {
+    box-sizing: border-box;
+}
+
 body {
-      background-color: #5c4033;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
+    background-color: #5c4033;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+
+.tv-container {
+    display: flex;
+    width: 95vw;
+    height: 90vh;
+    gap: 18px;
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 35;
+    gap: 18px;
+    min-width: 0;
+}
+
+.right-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 65;
+    gap: 18px;
+    min-width: 0;
+}
+
+.box {
+    background-color: #63d4f4;
+    border: 6px solid #b39b82;
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+
+    min-width: 0;
+}
+
+.box-title {
+    color: #ffffff;
+    font-size: 2.2vw;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    margin-bottom: 12px;
+}
+
+/* Painel esquerdo */
+.local-box {
+    flex: 1;
+}
+
+.local-number {
+    color: #d12c2c;
+    font-size: 9vw;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.local-type {
+    color: #555;
+    font-size: 1.8vw;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+/* Histórico */
+.history-box {
+    flex: 1;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.history-box .box-title {
+    font-size: 1.8vw;
+    align-self: center;
+}
+
+#history-list {
+    list-style: none;
+    width: 100%;
+    color: brown;
+    font-size: 1.5vw;
+    font-weight: bold;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+}
+
+#history-list li {
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 5px;
+}
+
+/* Painel direito */
+.patient-box {
+    flex: 3;
+    min-width: 0;
+}
+
+.patient-name {
+    color: brown;
+    font-size: clamp(30px, 6vw, 80px);
+    font-weight: bold;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Logo */
+.logo-box {
+    flex: 1;
+    min-width: 0;
+}
+
+.logo-text {
+    color: blueviolet;
+    font-size: clamp(24px, 3vw, 45px);
+    font-weight: bolder;
+    text-transform: uppercase;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+/* Animação */
+@keyframes flash {
+    0%, 100% {
+        opacity: 1;
     }
 
-    .tv-container {
-      display: flex;
-      width: 95vw;
-      height: 90vh;
-      gap: 18px;
+    50% {
+        opacity: 0.3;
     }
+}
 
-    .left-panel {
-      display: flex;
-      flex-direction: column;
-      width: 35%;
-      gap: 18px;
-      min-width: 0;
-    }
-
-    .right-panel {
-      display: flex;
-      flex-direction: column;
-      width: 65%;
-      gap: 18px;
-      min-width: 0;
-    }
-
-    .box {
-      background-color: #63d4f4;
-      border: 6px solid #b39b82;
-      border-radius: 15px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-
-    .box-title {
-      color: #ffffff;
-      font-size: 2.2vw;
-      font-weight: bold;
-      text-transform: uppercase;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-      margin-bottom: 12px;
-    }
-
-    /* Painel esquerdo - local (guichê ou consultório) */
-    .local-box { flex: 1; }
-    .local-number {
-      color: #d12c2c;
-      font-size: 9vw;
-      font-weight: bold;
-      line-height: 1;
-    }
-    .local-type {
-      color: #555;
-      font-size: 1.8vw;
-      font-weight: bold;
-      margin-top: 6px;
-    }
-
-       /* Historico */
-       .history-box {
-        flex: 1;
-        justify-content: flex-start;
-        align-items: flex-start;
-       }
-
-       .history-box .box-title { font-size: 1.8vw; align-self: center;} 
-       #history-list {
-        list-style: none;
-        width: 100%;
-        color: brown;
-        font-size: 1.5vw;
-        font-weight: bold;
-        text-align: left;
-       }
-
-       #history-list li {
-        margin-bottom: 8px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        padding-bottom: 5px;
-       }
-
-       /* Painel direito - nome do paciente */
-       .patient-box {flex: 3; }
-       .patient-name {
-        color: brown;
-        font-size: 6.5vw;
-        font-weight: bold;
-        word-break: break-word;
-       }
-       /* Logo */
-       .logo-box { flex: 1; }
-       .logo-text {
-        color: blueviolet;
-        font-size: 3.5vw;
-        font-weight: bolder;
-        text-transform: uppercase;
-       }
-       /* Animação de flash quando chama */
-       @keyframes flash {
-        0%, 100% {
-            opacity: 1; }
-        50% { opacity: 0.3; }    
-       }
-       .flash { animation: flash 0.5s ease 3; }
+.flash {
+    animation: flash 0.5s ease 3; }
     </style>  
 </head>
 
