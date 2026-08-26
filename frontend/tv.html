@@ -150,6 +150,7 @@ body {
         </div>
     </div>
 </div>
+</div>
 <script>
     let ultimoId = null;
     // Função criada para buscar a chamada atual e o histórico da TV em tempo real.
@@ -167,8 +168,8 @@ body {
         // Flash visual quando há chamada nova
         if (chamada.id !== ultimoId) {
             ultimoId = chamada.id;
-            const patientBox = document.querySelector(".pacient-box");
-            pacientBox.classList.remover("flash");
+            const pacientBox = document.querySelector(".pacient-box");
+            patientBox.classList.remover("flash");
             void pacientBox.offseWidth; // reflow
             pacientBox.classList.add("flash");
         }
