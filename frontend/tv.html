@@ -96,8 +96,8 @@ body {
        }
 
        /* Painel direito - nome do paciente */
-       .pacient-box {flex: 3; }
-       .pacient-name {
+       .patient-box {flex: 3; }
+       .patient-name {
         color: brown;
         font-size: 6.5vw;
         font-weight: bold;
@@ -141,9 +141,9 @@ body {
 
         <div>
     <div class="right-panel">
-        <div class="box pacient-box">
+        <div class="box patient-box">
             <div class="box-title">PACIENTE</div>
-            <div class="pacient-name" id="pacient-name">AGUARDANDO...</div>
+            <div class="patient-name" id="pacient-name">AGUARDANDO...</div>
         </div>
         <div class="box logo-box">
             <div class="logo-text">🏥 Sistema Hospitalar</div>
@@ -164,14 +164,14 @@ body {
     if (chamada) {
         document.getElementById("local-tipo").innerText = chamada.localTipo || "GUICHÊ";
         document.getElementById("local-numero").innerText = chamada.localNumero || "--";
-        document.getElementById("pacient-name").innerText = chamada.paciente || "AGUARDANDO...";
+        document.getElementById("patient-name").innerText = chamada.patiente || "AGUARDANDO...";
         // Flash visual quando há chamada nova
         if (chamada.id !== ultimoId) {
             ultimoId = chamada.id;
-            const pacientBox = document.querySelector(".pacient-box");
+            const patientBox = document.querySelector(".patient-box");
             patientBox.classList.remover("flash");
-            void pacientBox.offseWidth; // reflow
-            pacientBox.classList.add("flash");
+            void patientBox.offseWidth; // reflow
+            patientBox.classList.add("flash");
         }
     }
         // Histórico
@@ -180,7 +180,7 @@ body {
         historico.slice(0,4).forEach(h => {
                 const li = document.createElement("li");
                 const tipo = h.localTipo ? h.localTipo.substring(0,4) : "GUIC";
-                li.innerText = `${tipo}. ${h.localNumero} - ${h.paciente}`;
+                li.innerText = `${tipo}. ${h.localNumero} - ${h.patiente}`;
                 list.appendChild(li);
             });
         })
