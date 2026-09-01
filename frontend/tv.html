@@ -141,19 +141,18 @@ body {
                <ul id="history-list"></ul>
             </div>
         </div>
-     </div>    
 
-        <div>
-    <div class="right-panel">
-        <div class="box patient-box">
-            <div class="box-title">PACIENTE</div>
-            <div class="patient-name" id="pacient-name">AGUARDANDO...</div>
+            <div>
+               <div class="right-panel">
+               <div class="box patient-box">
+               <div class="box-title">PACIENTE</div>
+               <div class="patient-name" id="pacient-name">AGUARDANDO...</div>
+            </div>
+             <div class="box logo-box">
+                <div class="logo-text">🏥 Sistema Hospitalar</div>
+            </div> 
         </div>
-        <div class="box logo-box">
-            <div class="logo-text">🏥 Sistema Hospitalar</div>
-        </div>
-    </div>
-</div>
+    </div> 
 </div>
 <script>
     let ultimoId = null;
@@ -173,8 +172,8 @@ body {
         if (chamada.id !== ultimoId) {
             ultimoId = chamada.id;
             const patientBox = document.querySelector(".patient-box");
-            patientBox.classList.remover("flash");
-            void patientBox.offseWidth; // reflow
+            patientBox.classList.remove("flash");
+            void patientBox.offsetWidth; // reflow
             patientBox.classList.add("flash");
         }
     }
