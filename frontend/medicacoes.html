@@ -1,66 +1,59 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicações Prescritas</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
-<div class="container">
-
-  <h2>💊 Medicações Prescritas</h2>
-
-  <!-- IMPLEMENTADO: local onde a lista de medicações será exibida -->
-  <div id="listaMedicacoes"></div>
-
-</div>
+<main class="container">
+    <h2>💊 Medicações Prescritas</h2>
+    <div id="listaMedicacoes">Carregando...</div>
+</main>
 
 <script>
+async function carregarMedicacoesPrescritas() {
+    const div = document.getElementById("listaMedicacoes");
 
-// IMPLEMENTADO: busca as consultas salvas e mostra as medicações
-function carregarMedicacoesPrescritas() {
-  fetch("/medicacoes")
-    .then(r => r.json())
-    .then(data => {
-      const div = document.getElementById("listaMedicacoes");
+    try {
+        const resposta = await fetch("/medicacoes");
+        if (!resposta.ok) throw new Error("Não foi possível carregar as medicações.");
 
-      div.innerHTML = "";
+        const dados = await resposta.json();
+        div.replaceChildren();
 
-      if (data.length === 0) {
-        div.innerHTML = "<p>Nenhuma medicação prescrita.</p>";
-        return;
-      }
+        if (!dados.length) {
+            div.textContent = "Nenhuma medicação prescrita.";
+            return;
+        }
 
-      data.forEach(c => {
-        div.innerHTML += `
-          <div class="card">
-            <h3>${c.paciente}</h3>
+        dados.forEach(c => {
+            const card = document.createElement("div");
+            card.className = "card";
 
-            <p>
-              <b>Medicação:</b>
-              ${c.medicacao}
-            </p>
+            const titulo = document.createElement("h3");
+            titulo.textContent = c.paciente || "Paciente";
 
-            <p>
-              <b>Diagnóstico:</b>
-              ${c.diagnostico}
-            </p>
+            const medicacao = document.createElement("p");
+            medicacao.textContent = "Medicação: " + (c.medicacao || "Não informada");
 
-            <p>
-              <b>Observações:</b>
-              ${c.obs || "Nenhuma"}
-            </p>
-          </div>
-        `;
-      });
-    });
+            const diagnostico = document.createElement("p");
+            diagnostico.textContent = "Diagnóstico: " + (c.diagnostico || "Não informado");
+
+            const obs = document.createElement("p");
+            obs.textContent = "Observações: " + (c.obs || "Nenhuma");
+
+            card.append(titulo, medicacao, diagnostico, obs);
+            div.appendChild(card);
+        });
+    } catch (erro) {
+        div.textContent = "Erro ao carregar: " + erro.message;
+    }
 }
 
 carregarMedicacoesPrescritas();
-
 </script>
-
 </body>
 </html>

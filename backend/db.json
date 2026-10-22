@@ -2,89 +2,140 @@
   "usuarios": [
     {
       "usuario": "triagem",
-      "senha": "123",
+      "senha": "1501",
       "tipo": "triagem"
     },
     {
       "usuario": "medico",
-      "senha": "123",
+      "senha": "1501",
       "tipo": "medico"
     },
     {
       "usuario": "atendimento",
-      "senha": "123",
+      "senha": "1501",
+      "tipo": "atendimento"
+    },
+    {
+      "usuario": "Yan da Silva",
+      "senha": "1005",
       "tipo": "atendimento"
     }
   ],
   "pacientes": [
     {
-      "id": 1778767273416,
-      "nome": "yan",
-      "cpf": "53434449.9.449",
-      "tipo": "Particular",
-      "status": "triagem",
-      "createdAt": "2026-05-14T14:01:13.416Z"
+      "id": 1792674956448,
+      "nome": "Yan da Silva",
+      "cpf": "00000000000",
+      "tipo": "Publico",
+      "status": "atendido",
+      "createdAt": "2026-10-22T13:15:56.448Z"
+    },
+    {
+      "id": 1792677029777,
+      "nome": "João da Silva",
+      "cpf": "1234567775",
+      "tipo": "Publico",
+      "status": "atendido",
+      "createdAt": "2026-10-22T13:50:29.777Z"
+    },
+    {
+      "id": 1792677292537,
+      "nome": "bira",
+      "cpf": "6646446464646464",
+      "tipo": "Convenio",
+      "status": "atendido",
+      "createdAt": "2026-10-22T13:54:52.537Z"
     }
   ],
   "triagens": [
     {
-      "id": 1778767334260,
-      "nome": "yan",
-      "sintoma": "hemorragia",
-      "temperatura": 37,
-      "alergia": "dipirona",
-      "observacao": "nenhuma ",
+      "id": 1792675053567,
+      "nome": "Yan da Silva",
+      "sintoma": "resfriado",
+      "temperatura": 39.5,
+      "alergia": "Ibuprofeno",
+      "observacao": "O paciente está sentido dor de cabeça e nas articulações.",
       "risco": "vermelho",
-      "status": "aguardando_medico",
-      "createdAt": "2026-05-14T14:02:14.260Z"
+      "status": "atendido",
+      "createdAt": "2026-10-22T13:17:33.567Z"
     },
     {
-      "id": 1787234637280,
-      "nome": "Yan",
-      "sintoma": "dor_leve",
-      "temperatura": 35,
-      "alergia": "Não tem",
-      "observacao": "Dores nas costas perto dos ombros.",
-      "risco": "verde",
-      "status": "aguardando_medico",
-      "createdAt": "2026-08-20T14:03:57.280Z"
+      "id": 1792677143583,
+      "nome": "João da Silva",
+      "sintoma": "resfriado",
+      "temperatura": 39,
+      "alergia": "Nenhuma",
+      "observacao": "O paciente está sentindo dor de cabeça e nas articulações.",
+      "risco": "vermelho",
+      "status": "atendido",
+      "createdAt": "2026-10-22T13:52:23.583Z"
     },
     {
-      "id": 1787234746655,
-      "nome": "Yan",
-      "sintoma": "dor_leve",
-      "temperatura": 35,
-      "alergia": "Não tem",
-      "observacao": "Dores nas costas perto dos ombros.",
-      "risco": "verde",
-      "status": "aguardando_medico",
-      "createdAt": "2026-08-20T14:05:46.655Z"
+      "id": 1792677377358,
+      "nome": "bira",
+      "sintoma": "infarto",
+      "temperatura": 38,
+      "alergia": "nd",
+      "observacao": "nd",
+      "risco": "vermelho",
+      "status": "atendido",
+      "createdAt": "2026-10-22T13:56:17.358Z"
     }
   ],
   "consultas": [
     {
-      "id": 1778767388545,
-      "paciente": "yan",
-      "diagnostico": "test",
-      "medicacao": "test",
-      "obs": "teste",
-      "createdAt": "2026-05-14T14:03:08.545Z"
-    },
-    {
-      "id": 1786713874566,
-      "paciente": "yan",
-      "diagnostico": "Estar com Hemorragia",
-      "medicacao": "Soro fisiológico",
-      "obs": "nenhuma ",
-      "createdAt": "2026-08-14T13:24:34.566Z"
-    },
-    {
-      "id": 1787234808584,
-      "paciente": "Yan",
-      "diagnostico": "Dor nos ombros.",
+      "id": 1792675120767,
+      "paciente": "Yan da Silva",
+      "diagnostico": "Resfriado",
       "medicacao": "Paracetamol",
-      "obs": "Dores nas costas perto dos ombros.",
-      "createdAt": "2026-08-20T14:06:48.584Z"
+      "obs": "O paciente está sentido dor de cabeça e nas articulações.",
+      "createdAt": "2026-10-22T13:18:40.767Z"
+    },
+    {
+      "id": 1792677228616,
+      "paciente": "João da Silva",
+      "diagnostico": "Febre",
+      "medicacao": "Ibuprofeno",
+      "obs": "O paciente está sentindo dor de cabeça e nas articulações.",
+      "createdAt": "2026-10-22T13:53:48.616Z"
+    },
+    {
+      "id": 1792677443136,
+      "paciente": "bira",
+      "diagnostico": "",
+      "medicacao": "Dipirona",
+      "obs": "nd",
+      "createdAt": "2026-10-22T13:57:23.136Z"
     }
-  ]
+  ],
+  "chamadas": [
+    {
+      "id": 1792677316048,
+      "paciente": "bira",
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "createdAt": "2026-10-22T13:55:16.048Z"
+    },
+    {
+      "id": 1792677074632,
+      "paciente": "João da Silva",
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "createdAt": "2026-10-22T13:51:14.632Z"
+    },
+    {
+      "id": 1792674990935,
+      "paciente": "Yan da Silva",
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "createdAt": "2026-10-22T13:16:30.935Z"
+    }
+  ],
+  "chamadaAtual": {
+    "id": 1792677316048,
+    "paciente": "bira",
+    "localTipo": "GUICHÊ",
+    "localNumero": "01",
+    "createdAt": "2026-10-22T13:55:16.048Z"
+  }
 }

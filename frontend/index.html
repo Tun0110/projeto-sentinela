@@ -1,38 +1,72 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema Hospitalar</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="container">
+<main class="container">
+    <img src="logo.png" class="logo" alt="Logo do hospital">
+    <h2>🏥 Sistema Hospitalar</h2>
 
-  <img src="logo.png" class="logo">
+    <form id="formLogin">
+        <input id="usuario" placeholder="Usuário" autocomplete="username" required>
+        <input id="senha" type="password" placeholder="Senha"
+               autocomplete="current-password" required>
+        <button type="submit">Entrar</button>
+    </form>
 
-  <h2>🏥 Sistema Hospitalar</h2>
-  <input id="usuario" placeholder="Usuário">
-  <input id="senha" type="password" placeholder="Senha">
-  <button onclick="login()">Entrar</button>
-</div>
+    <p id="mensagem" role="status"></p>
+</main>
 
 <script>
-function login() {
-  fetch("login", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      usuario: usuario.value,
-      senha: senha.value
-    })
-  })
-  .then(r => r.json())
-  .then(data => {
-    if(data.tipo === "triagem") location.href = "triagem.html";
-    if(data.tipo === "medico") location.href = "medico.html";
-    if(data.tipo === "atendimento") location.href = "atendimento.html";
-  });
-}
+document.getElementById("formLogin").addEventListener("submit", async e => {
+    e.preventDefault();
+
+    const usuario = document.getElementById("usuario").value.trim();
+    const senha = document.getElementById("senha").value;
+    const mensagem = document.getElementById("mensagem");
+
+    try {
+        const resposta = await fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ usuario, senha })
+        });
+
+        const data = await resposta.json();
+
+        if (!resposta.ok || data.erro) {
+            throw new Error(data.erro || "Usuário ou senha inválidos.");
+        }
+
+        const paginas = {
+            atendimento: "atendimento.html",
+            triagem: "triagem.html",
+            medico: "medico.html"
+        };
+
+        if (!paginas[data.tipo]) {
+            throw new Error("Setor não reconhecido pelo sistema.");
+        }
+
+        window.location.href = paginas[data.tipo];
+    } catch (erro) {
+        mensagem.textContent = erro.message;
+    }
+});
+
+// Atalho para abrir a administração.
+// Para uso real, proteja a página admin com autenticação e autorização no servidor.
+window.addEventListener("keydown", e => {
+    if (e.ctrlKey && e.altKey && e.key.toLowerCase() === "a") {
+        e.preventDefault();
+        window.location.href = "admin.html";
+    }
+});
 </script>
 </body>
 </html>

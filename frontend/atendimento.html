@@ -1,39 +1,101 @@
 <!DOCTYPE html>
-<html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<head><link rel="stylesheet" href="css/style.css"></head>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimento</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-<div class="container">
-<h2>Atendimento</h2>
+<main class="container">
+    <h2>Atendimento</h2>
 
-<input id="nome" placeholder="Nome">
-<input id="cpf" placeholder="CPF">
+    <form id="formAtendimento">
+        <input id="nome" placeholder="Nome completo" required>
+        <input type="text"id="cpf"name="cpf"placeholder="CPF"maxlength="11"inputmode="numeric"autocomplete="off"required>
 
-<select id="tipo">
-  <option>Convenio</option>
-  <option>Particular</option>
-  <option>Publico</option>
-</select>
+        <select id="tipo" required>
+            <option value="">Selecione o tipo de atendimento</option>
+            <option value="Convenio">Convênio</option>
+            <option value="Particular">Particular</option>
+            <option value="Publico">Público</option>
+        </select>
 
-<input type="file" id="foto">
+        <label for="foto">Foto (opcional)</label>
+        <input type="file" id="foto" accept="image/*">
 
-<button onclick="cadastrar()">Cadastrar</button>
-</div>
+        <button type="submit">Cadastrar paciente</button>
+    </form>
+
+    <p id="mensagem" role="status"></p>
+</main>
+
 
 <script>
-function cadastrar(){
- fetch("http://localhost:3000/atendimento",{
-  method:"POST",
-  headers:{"Content-Type":"application/json"},
-  body: JSON.stringify({
-    nome: nome.value,
-    cpf: cpf.value,
-    tipo: tipo.value
-  })
- });
- alert("Paciente enviado para triagem");
-}
+const campoCPF = document.getElementById("cpf");
+const formulario = document.getElementById("formAtendimento");
+const mensagem = document.getElementById("mensagem");
+
+// Permite somente números e limita o CPF a 11 dígitos
+campoCPF.addEventListener("input", () => {
+    campoCPF.value = campoCPF.value
+        .replace(/\D/g, "")
+        .slice(0, 11);
+});
+
+formulario.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById("nome").value.trim();
+    const cpf = campoCPF.value.trim();
+    const tipo = document.getElementById("tipo").value;
+
+    // Verifica se os campos foram preenchidos
+    if (!nome || !cpf || !tipo) {
+        mensagem.textContent = "Preencha todos os campos.";
+        return;
+    }
+
+    // Verifica se o CPF possui exatamente 11 dígitos
+    if (cpf.length !== 11) {
+        mensagem.textContent = "O CPF deve conter exatamente 11 dígitos.";
+        campoCPF.focus();
+        return;
+    }
+
+    const paciente = {
+        nome: nome,
+        cpf: cpf,
+        tipo: tipo
+    };
+
+    try {
+        mensagem.textContent = "Cadastrando paciente...";
+
+        const resposta = await fetch("/atendimento", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(paciente)
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            throw new Error(dados.erro || "Erro ao cadastrar paciente.");
+        }
+
+        mensagem.textContent =
+            "Paciente enviado para a fila de triagem.";
+
+        formulario.reset();
+
+    } catch (erro) {
+        mensagem.textContent =
+            "Não foi possível cadastrar: " + erro.message;
+    }
+});
 </script>
 </body>
 </html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - Sistema Hospitalar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main class="container">
+        <a href="index.html">← Voltar para o login</a>
+
+        <h2>Cadastrar Usuário</h2>
+
+        <form id="formUsuario">
+            <input id="usuario" type="text"
+                   placeholder="Nome de usuário (login)" required>
+
+            <input id="senha" type="password"
+                   placeholder="Senha" required>
+
+            <select id="tipo" required>
+                <option value="">Selecione o setor</option>
+                <option value="atendimento">Atendimento</option>
+                <option value="triagem">Triagem</option>
+                <option value="medico">Médico</option>
+            </select>
+
+            <button type="submit">Cadastrar Usuário</button>
+        </form>
+
+        <p id="mensagem" role="status"></p>
+        <hr>
+
+        <h3>Usuários cadastrados</h3>
+        <div id="listaUsuarios">Carregando usuários...</div>
+    </main>
+
+<script>
+const form = document.getElementById("formUsuario");
+const mensagem = document.getElementById("mensagem");
+const lista = document.getElementById("listaUsuarios");
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const usuario = document.getElementById("usuario").value.trim();
+    const senha = document.getElementById("senha").value;
+    const tipo = document.getElementById("tipo").value;
+
+    try {
+        const resposta = await fetch("/usuarios", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ usuario, senha, tipo })
+        });
+
+        const dados = await resposta.json();
+
+        if (!resposta.ok) {
+            throw new Error(dados.erro || "Não foi possível cadastrar.");
+        }
+
+        mensagem.textContent = "Usuário cadastrado com sucesso!";
+        form.reset();
+        await carregarUsuarios();
+    } catch (erro) {
+        mensagem.textContent = "Erro: " + erro.message;
+    }
+});
+
+async function carregarUsuarios() {
+    try {
+        const resposta = await fetch("/usuarios");
+        if (!resposta.ok) throw new Error("Falha ao carregar usuários.");
+
+        const usuarios = await resposta.json();
+        lista.replaceChildren();
+
+        if (!usuarios.length) {
+            lista.textContent = "Nenhum usuário cadastrado.";
+            return;
+        }
+
+        usuarios.forEach(u => {
+            const card = document.createElement("div");
+            card.className = "card";
+
+            const nome = document.createElement("p");
+            nome.textContent = "Usuário: " + u.usuario;
+
+            const setor = document.createElement("p");
+            setor.textContent = "Setor: " + u.tipo;
+
+            card.append(nome, setor);
+            lista.appendChild(card);
+        });
+    } catch (erro) {
+        lista.textContent = "Erro ao carregar a lista. Verifique o servidor.";
+    }
+}
+
+carregarUsuarios();
+</script>
+</body>
+</html>
