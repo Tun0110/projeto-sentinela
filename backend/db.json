@@ -1,17 +1,17 @@
 {
   "usuarios": [
     {
-      "usuario": "triagem",
+      "usuario": "Triagem",
       "senha": "1501",
       "tipo": "triagem"
     },
     {
-      "usuario": "medico",
+      "usuario": "Médico",
       "senha": "1501",
       "tipo": "medico"
     },
     {
-      "usuario": "atendimento",
+      "usuario": "Atendimento",
       "senha": "1501",
       "tipo": "atendimento"
     },
@@ -45,6 +45,14 @@
       "tipo": "Convenio",
       "status": "atendido",
       "createdAt": "2026-10-22T13:54:52.537Z"
+    },
+    {
+      "id": 1793803268250,
+      "nome": "João da Silva",
+      "cpf": "00000000000",
+      "tipo": "Publico",
+      "status": "aguardando_medico",
+      "createdAt": "2026-11-04T14:41:08.250Z"
     }
   ],
   "triagens": [
@@ -80,6 +88,28 @@
       "risco": "vermelho",
       "status": "atendido",
       "createdAt": "2026-10-22T13:56:17.358Z"
+    },
+    {
+      "id": 1793804687793,
+      "nome": "Paciente de Demonstração",
+      "sintoma": "dor_leve",
+      "temperatura": 36.5,
+      "alergia": "Nenhuma",
+      "observacao": "Dados fictícios para teste do sistema.",
+      "risco": "verde",
+      "status": "atendido",
+      "createdAt": "2026-11-04T15:04:47.793Z"
+    },
+    {
+      "id": 1793805891737,
+      "nome": "João da Silva",
+      "sintoma": "falta_ar_moderada",
+      "temperatura": 38.5,
+      "alergia": "Nenhuma.",
+      "observacao": "Sente que a garganta está fechada.",
+      "risco": "amarelo",
+      "status": "atendido",
+      "createdAt": "2026-11-04T15:24:51.737Z"
     }
   ],
   "consultas": [
@@ -106,9 +136,61 @@
       "medicacao": "Dipirona",
       "obs": "nd",
       "createdAt": "2026-10-22T13:57:23.136Z"
+    },
+    {
+      "id": 1793804836904,
+      "paciente": "Paciente de Demonstração",
+      "diagnostico": "Dores leves",
+      "medicacao": "Dipirona",
+      "obs": "Dados fictícios para teste do sistema.",
+      "createdAt": "2026-11-04T15:07:16.904Z"
+    },
+    {
+      "id": 1793805968474,
+      "paciente": "João da Silva",
+      "diagnostico": "Crise de faltar",
+      "medicacao": "Ibuprofeno",
+      "obs": "Sente que a garganta está fechada.",
+      "createdAt": "2026-11-04T15:26:08.474Z"
+    },
+    {
+      "id": 1793806009401,
+      "paciente": "João da Silva",
+      "diagnostico": "Crise de falta de ar.",
+      "medicacao": "Ibuprofeno",
+      "obs": "Sente que a garganta está fechada.",
+      "createdAt": "2026-11-04T15:26:49.401Z"
     }
   ],
   "chamadas": [
+    {
+      "id": 1793804689984,
+      "paciente": "João da Silva",
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "createdAt": "2026-11-04T15:04:49.984Z"
+    },
+    {
+      "id": 1793804195240,
+      "paciente": "João da Silva",
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "createdAt": "2026-11-04T14:56:35.240Z"
+    },
+    {
+      "id": 1793804187264,
+      "paciente": "João da Silva",
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "createdAt": "2026-11-04T14:56:27.264Z"
+    },
+    {
+      "id": 1793804079025,
+      "paciente": "João da Silva",
+      "localTipo": "GUICHÊ",
+      "localNumero": "01",
+      "createdAt": "2026-11-04T14:54:39.025Z"
+    },
     {
       "id": 1792677316048,
       "paciente": "bira",
@@ -132,10 +214,10 @@
     }
   ],
   "chamadaAtual": {
-    "id": 1792677316048,
-    "paciente": "bira",
+    "id": 1793804689984,
+    "paciente": "João da Silva",
     "localTipo": "GUICHÊ",
     "localNumero": "01",
-    "createdAt": "2026-10-22T13:55:16.048Z"
+    "createdAt": "2026-11-04T15:04:49.984Z"
   }
 }

@@ -93,6 +93,8 @@
         <textarea id="observacao" placeholder="Observações"></textarea>
 
         <div id="resultado"></div>
+        <button type="button" id="preencherAutomatico">⚡ Preencher automaticamente</button>
+
         <button type="submit">Salvar triagem</button>
     </form>
 
@@ -100,8 +102,31 @@
 </main>
 
 <script>
+    // PREENCHER FORMULÁRIO COM O PRIMEIRO PACIENTE DA FILA
+document.getElementById("preencherAutomatico")
+    .addEventListener("click", () => {
+
+        if (pacientesAguardando.length === 0) {
+            alert("Não existem pacientes aguardando triagem.");
+            return;
+        }
+
+        const paciente = pacientesAguardando[0];
+        document.getElementById("nome").value =
+            paciente.nome || "";
+        document.getElementById("sintoma").value = "";
+        document.getElementById("temp").value = "";
+        document.getElementById("alergia").value = "";
+        document.getElementById("observacao").value = "";
+        document.getElementById("resultado").textContent =
+            "Paciente carregado! Preencha os dados da avaliação.";
+        document.getElementById("resultado").className = "";
+        mensagem.textContent = "Dados do paciente carregados.";
+    });
+
 const filaDiv = document.getElementById("fila-pacientes");
 const mensagem = document.getElementById("mensagem");
+let pacientesAguardando = [];
 
 async function carregarPacientes() {
     try {
@@ -110,6 +135,8 @@ async function carregarPacientes() {
 
         const pacientes = await resposta.json();
         const fila = pacientes.filter(p => p.status === "triagem");
+        pacientesAguardando = fila;
+
 
         filaDiv.replaceChildren();
 
@@ -165,7 +192,7 @@ async function chamarNaTV(nome) {
         const dados = await resposta.json();
         if (!resposta.ok) throw new Error(dados.erro || "Falha ao chamar paciente.");
 
-        alert(nome + " foi chamado para o Guichê 01.");
+        alert(nome + " Foi chamado para o Guichê 01.");
     } catch (erro) {
         alert("Não foi possível chamar na TV: " + erro.message);
     }
